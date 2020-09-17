@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 
 // libraries
 // import ScrollAnimation from 'react-animate-on-scroll'; // reference:: https://michalsnik.github.io/aos/
@@ -7,15 +6,15 @@ import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 
 // modules
-import Menu from './modules/Menu';
+import Menu from './components/modules/Menu';
 
 // sections
-import About from './sections/About';
-import Technologies from './sections/Technologies';
-import Study from './sections/Study';
-import Internship from './sections/Internship';
-import Grades from './sections/Grades';
-import Previews from './sections/Previews';
+import About from './components/sections/About';
+import Technologies from './components/sections/Technologies';
+import Study from './components/sections/Study';
+import Internship from './components/sections/Internship';
+import Grades from './components/sections/Grades';
+import Previews from './components/sections/Previews';
 
 // scripts
 import Context from './scripts/context';

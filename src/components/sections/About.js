@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Section from '../modules/Section';
 
 // assets
-import ProfileImageSrc from '../assets/profile.png';
+import ProfileImageSrc from '../../assets/profile.png';
 
 const About = () => {
 	return (

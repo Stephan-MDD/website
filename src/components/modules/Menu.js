@@ -8,10 +8,10 @@ import { faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-
 import { useMediaQuery } from 'react-responsive';
 
 // components
-import ScrollBar from '../components/ScrollBar';
+// import ScrollBar from '../elements/ScrollBar';
 
 // scripts
-import Context from '../scripts/context';
+import Context from '../../scripts/context';
 
 const Menu = () => {
 	const [navigationOpen, handleNavigation] = useState(false);
