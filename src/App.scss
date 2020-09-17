@@ -1,0 +1,78 @@
+$color_light_cyan: #00b2ff;
+$color_light_blue: #52b6ff;
+$color_dark_blue: #3b5afc;
+$color_slate_blue: #677c9b;
+$color_slate_white: #ebeef6;
+
+// :root { filter: invert(100%) hue-rotate(180deg); }
+// .inverted { filter: invert(100%); }
+
+:root {
+	::-webkit-scrollbar {
+		width: 0.4rem;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: none;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: $color_light_cyan;
+	}
+}
+
+a {
+	color: $color_light_cyan;
+	text-decoration: none;
+}
+
+.LogoContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	margin: 2rem;
+
+	div:first-child {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		span {
+			font-size: 2rem;
+			font-weight: bold;
+			color: $color_light_cyan;
+			padding-right: 0.6rem;
+			border-right: 1px solid $color_slate_blue;
+		}
+
+		a {
+			padding-left: 0.6rem;
+			color: $color_slate_blue;
+		}
+	}
+
+	span:last-child {
+		color: $color_slate_blue;
+		font-size: 0.6rem;
+	}
+}
+
+.Navigation {
+	a {
+		color: $color_slate_white;
+		font-size: 0.8rem;
+		font-weight: bold;
+		padding: 0.8rem 0rem;
+	}
+}
+
+.ContactLinks {
+	a {
+		color: $color_slate_blue;
+		padding: 0.4rem 0rem;
+	}
+}
