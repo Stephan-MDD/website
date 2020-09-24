@@ -12,18 +12,19 @@ import ProfileImageSrc from '../../assets/profile.png';
 const About = () => {
 	return (
 		<SSection>
-			<h2>Software Developer</h2>
-			<Paragraph>
-				<b>Velkommen,</b>
-				<br />
-				mit navn er Stephan studere PA i Software development på CPHBusiness i Lyngby.
-			</Paragraph>
+			<div>
+				<h2>Software Developer</h2>
+				<Paragraph>
+					<b>Velkommen,</b>
+					<br />
+					mit navn er Stephan studere PA i Software development på CPHBusiness i Lyngby.
+				</Paragraph>
+			</div>
 
 			<Subjects>
 				<span>AI</span>
 				<span>BE</span>
 				<span>FE</span>
-				<span>DB</span>
 				<span>IOT</span>
 			</Subjects>
 
@@ -34,6 +35,11 @@ const About = () => {
 					<span>Djurhuus</span>
 				</ImageText>
 			</ProfileImage>
+
+			<div>
+				<a href="/#">Source @ GitHub</a>
+				<a href="/#">Design @ Figma</a>
+			</div>
 		</SSection>
 	);
 };
@@ -44,6 +50,7 @@ const Subjects = styled.div`
 `;
 
 const Paragraph = styled.p`
+	padding: 2rem;
 	background: #1e2837;
 `;
 
@@ -76,6 +83,10 @@ const ImageText = styled.div`
 	font-weight: bold;
 `;
 
-const SSection = styled(Section)``;
+const SSection = styled(Section)`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+`;
 
 export default About;

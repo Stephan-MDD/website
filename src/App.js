@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // libraries
 // import ScrollAnimation from 'react-animate-on-scroll'; // reference:: https://michalsnik.github.io/aos/
@@ -11,27 +11,31 @@ import Menu from './components/modules/Menu';
 // sections
 import About from './components/sections/About';
 import Technologies from './components/sections/Technologies';
-import Study from './components/sections/Study';
-import Internship from './components/sections/Internship';
-import Grades from './components/sections/Grades';
+import Studies from './components/sections/Studies';
 import Previews from './components/sections/Previews';
+import Contact from './components/sections/Contact';
 
 // scripts
-import Context from './scripts/context';
+import { mediaBounds } from './scripts/styles';
+import * as scroll from './scripts/scroll';
 
 const App = () => {
-	const isSmallMedia = useMediaQuery(Context.smallMediaBoundary);
+	const isSmallMedia = useMediaQuery(mediaBounds.small);
+
+	useEffect(() => {
+		scroll.setListeners();
+		scroll.handleScroll();
+	});
 
 	return (
 		<Container isSmallMedia={isSmallMedia}>
 			<Menu />
-			<Main>
+			<Main onScroll={scroll.handleScroll}>
+				<Studies />
 				<About />
 				<Technologies />
-				<Study />
-				<Internship />
-				<Grades />
 				<Previews />
+				<Contact />
 			</Main>
 		</Container>
 	);
@@ -45,7 +49,7 @@ const Container = styled.div`
 	${({ isSmallMedia }) => (isSmallMedia ? 'flex-direction: column-reverse;' : 'flex-direction: row;')}
 `;
 
-const Main = styled.section`
+const Main = styled.main`
 	flex: 1;
 	overflow-x: hidden;
 	overflow-y: scroll;

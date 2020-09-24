@@ -8,18 +8,18 @@ import { faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-
 import { useMediaQuery } from 'react-responsive';
 
 // components
-// import ScrollBar from '../elements/ScrollBar';
+// import ProgressBar from '../elements/ProgressBar';
 
 // scripts
-import Context from '../../scripts/context';
+import * as styles from '../../scripts/styles';
 
 const Menu = () => {
 	const [navigationOpen, handleNavigation] = useState(false);
-	const isSmallMedia = useMediaQuery(Context.smallMediaBoundary);
+	const isSmallMedia = useMediaQuery(styles.mediaBounds.small);
 
 	return (
 		<Container isSmallMedia={isSmallMedia} navigationOpen={navigationOpen}>
-			<LogoContainer isSmallMedia={isSmallMedia} className="LogoContainer">
+			<LogoContainer isSmallMedia={isSmallMedia}>
 				<div>
 					<span>SD</span>
 					<a href="/#">en</a>
@@ -27,18 +27,31 @@ const Menu = () => {
 				<span>click en for english</span>
 			</LogoContainer>
 
-			<Navigation isSmallMedia={isSmallMedia} navigationOpen={navigationOpen} className="Navigation">
-				<a href="/#">om mig</a>
-				<a href="/#">teknologier</a>
-				<a href="/#">studie</a>
-				<a href="/#">praktik</a>
-				<a href="/#">karaktere</a>
-				<a href="/#">previews</a>
+			<Navigation isSmallMedia={isSmallMedia} navigationOpen={navigationOpen}>
+				<a href="/#" onClick={() => handleNavigation(false)}>
+					om mig
+				</a>
+
+				<a href="/#" onClick={() => handleNavigation(false)}>
+					teknologier
+				</a>
+
+				<a href="/#" onClick={() => handleNavigation(false)}>
+					studie
+				</a>
+
+				<a href="/#" onClick={() => handleNavigation(false)}>
+					previews
+				</a>
+
+				<a href="/#" onClick={() => handleNavigation(false)}>
+					contact
+				</a>
 			</Navigation>
 
-			<ContactLinks isSmallMedia={isSmallMedia} className="ContactLinks">
-				<a href="/#">
-					<FontAwesomeIcon icon={faArrowDown} />
+			<ContactLinks isSmallMedia={isSmallMedia}>
+				<a href="/#" style={{ fontWeight: 'bold' }}>
+					CV
 				</a>
 				<a href="/#">
 					<FontAwesomeIcon icon={faGithub} />
@@ -63,27 +76,41 @@ const Container = styled.div`
 
 	overflow: hidden;
 
-	${({ isSmallMedia, navigationOpen }) => {
-		if (isSmallMedia && navigationOpen) return 'height: 100%;';
-		else if (isSmallMedia) return 'height: 4rem;';
-		else return 'width: 12rem;';
+	${({ isSmallMedia }) => {
+		if (isSmallMedia) return `height: 4rem; border-top: 2px solid ${styles.colors.grey.mid_deep};`;
+		else return `width: 12rem; border-right: 2px solid ${styles.colors.grey.mid_deep};`;
 	}}
 `;
 
 const Navigation = styled.nav`
 	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
 	flex-direction: column;
-
 	overflow: hidden;
+	transition: top 2s;
 
-	transition: opacity 500ms;
+	background: #151b24;
+
+	width: 100%;
+	z-index: 10;
+
+	a {
+		font-weight: bold;
+		padding: 0.8rem 0rem;
+	}
 
 	${({ isSmallMedia, navigationOpen }) => {
-		if (isSmallMedia && navigationOpen) return 'transform: translateY(50%); opacity: 1;';
-		else if (isSmallMedia) return 'transform: translateY(50%); opacity: 0;';
-		else return '';
+		const defaultSmallMedia = `
+			font-size: 2rem;
+			position: absolute;
+			text-align: right;
+			padding: 0 2rem;
+			width: calc(100% - 2*2rem);
+			justify-content: flex-end;
+		`;
+
+		if (isSmallMedia && navigationOpen) return defaultSmallMedia + 'top: 0vh;  height: calc(100vh - 8rem);';
+		else if (isSmallMedia) return defaultSmallMedia + 'top: 100vh; height: 0vh;';
+		else return 'align-items: center;';
 	}}
 `;
 
@@ -94,12 +121,49 @@ const ContactLinks = styled.div`
 	justify-content: space-evenly;
 	padding: 0.4rem 0;
 
-	${({ isSmallMedia }) => (isSmallMedia ? 'flex-direction: row;' : 'flex-direction: column-reverse;')}
-	${({ isSmallMedia }) => (isSmallMedia ? 'font-size: 2rem;' : 'font-size: 2.4rem;')}
+	a {
+		color: #677c9b;
+		padding: 0.4rem 0rem;
+	}
+
+	${({ isSmallMedia }) => (isSmallMedia ? 'flex-direction: row; font-size: 2rem;' : 'flex-direction: column-reverse; font-size: 2.4rem;')}
+	${({ isSmallMedia }) => (isSmallMedia ? '' : 'margin-bottom: 2rem;')}
 `;
 
 const LogoContainer = styled.div`
 	${({ isSmallMedia }) => isSmallMedia && 'position: absolute; top: 0;'}
+	z-index: 15;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+
+	margin: 2rem;
+
+	div:first-child {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		span {
+			font-size: 2rem;
+			font-weight: bold;
+			color: #00b2ff;
+			padding-right: 0.6rem;
+			border-right: 1px solid #677c9b;
+		}
+
+		a {
+			color: #677c9b;
+			padding-left: 0.6rem;
+		}
+	}
+
+	span:last-child {
+		color: #677c9b;
+		font-size: 0.6rem;
+	}
 `;
 
 export default Menu;

@@ -6,8 +6,8 @@ import styled from 'styled-components';
 // components
 import Section from '../modules/Section';
 
-const Internship = () => {
+const Contact = () => {
 	return <Section></Section>;
 };
 
-export default Internship;
+export default Contact;
